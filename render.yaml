@@ -1,0 +1,13 @@
+services:
+  - name: twenty-webhook
+    region: oregon
+    plan: starter
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://twenty:2aFyF8rNLSSrjgdLJipSliDT64mRktFt@dpg-d73ig1hr0fns738or79g-a/twenty_bv15
+      - key: WORKSPACE_SCHEMA
+        value: workspace_7paj63sou26l4ymm11nudt76g
